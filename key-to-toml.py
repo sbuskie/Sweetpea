@@ -2,7 +2,7 @@ import toml
 
 output_file = ".streamlit/secrets.toml"
 
-with open("steps-10000-bc6e9ed43c4c.json") as json_file:
+with open("sweetpea-318722-0ed6bb8f892d.json") as json_file:
     json_text = json_file.read()
 
 config = {"textkey": json_text}
