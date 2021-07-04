@@ -1,3 +1,5 @@
 *.json
 .streamlit/
 key-to-toml.py
+NYC_Uber_rides.py
+*.csv

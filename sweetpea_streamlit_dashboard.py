@@ -65,7 +65,7 @@ def convert_column_names(x):
 	if x == 'Timestamp':
 		return 'date_time'
 	elif x == 'Yes, I felt movements':
-		return 'Movement'
+		return 'movement'
 	else:
 		return x
 
@@ -74,13 +74,47 @@ def convert_column_names(x):
 print('scraping form data')
 df = main(spreadsheets)
 print(df)
-raw_data = df
-df['date_time'] = pd.to_datetime(df['date_time'])
+data = df
+data['date_time'] = pd.to_datetime(data['date_time']) # this creates an odd time stamp in streamlit. Not required.
 
 st.title('Sweet Pea Movements')
 st.image('./Sweet_Pea.jpg', caption='Feeling those wiggles')
 
 st.subheader('Record wiggles here https://forms.gle/xW1HJuyCyQ4bywFU7')
 
-st.write(df)
+st.title("Wiggles by hour")
+hour_selected = st.slider("Select hour of wiggles", 0, 23)
+
+# FILTERING DATA BY HOUR SELECTED
+data = data[data['date_time'].dt.hour == hour_selected]
+
+# FILTERING DATA FOR THE HISTORGRAM
+
+filtered = data[
+    (data['date_time'].dt.hour >= hour_selected) & (data['date_time'].dt.hour < (hour_selected + 1))
+    ]
+
+hist = np.histogram(filtered['date_time'].dt.minute, bins=60, range=(0, 60))[0]
+chart_data = pd.DataFrame({"minute": range(60), "movement": hist})
+
+#LAYING OUT THE HISTOGRAM SECTION
+
+st.write("")
+st.write("**Wiggles per minute between %i:00 and %i:00**" % (hour_selected, (hour_selected + 1) % 24))
+
+st.altair_chart(alt.Chart(chart_data)
+    .mark_area(
+        interpolate='step-after',
+    ).encode(
+        x=alt.X("minute:Q", scale=alt.Scale(nice=False)),
+        y=alt.Y("movement:Q"),
+        tooltip=['minute', 'movement']
+    ).configure_mark(
+        opacity=0.5,
+        color='blue'
+    ), use_container_width=True)
+
+
+st.line_chart(data)
+st.write(data)
 
