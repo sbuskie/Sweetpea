@@ -78,7 +78,7 @@ raw_data = df
 df['date_time'] = pd.to_datetime(df['date_time'])
 
 st.title('Sweet Pea Movements')
-st.image('./Sweet_Pea.jpg', caption='Feeling those wiggles')
+st.image('./Sweet_Pea.jpg', caption='Feeling those wiggles :heart:')
 
 st.subheader('Record wiggles here https://forms.gle/xW1HJuyCyQ4bywFU7')
 
