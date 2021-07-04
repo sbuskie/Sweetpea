@@ -97,7 +97,7 @@ filtered = data[
 hist = np.histogram(filtered['date_time'].dt.minute, bins=60, range=(0, 60))[0]
 chart_data = pd.DataFrame({"minute": range(60), "movement": hist})
 
-#LAYING OUT THE HISTOGRAM SECTION
+#LAYING OUT THE HISTOGRAM SECTIONs
 
 st.write("")
 st.write("**Wiggles per minute between %i:00 and %i:00**" % (hour_selected, (hour_selected + 1) % 24))
