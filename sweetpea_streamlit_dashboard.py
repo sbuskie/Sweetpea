@@ -24,7 +24,7 @@ client = gspread.authorize(creds)
 
 #Change to your Google Sheets Name
 #can add more spreadsheets as in example - spreadsheets = ['dummy_10k_response','dummy_data_pcr_test']
-spreadsheets = ['Form responses 1']
+spreadsheets = ['Sweet Pea Movements']
 
 
 def main(spreadsheets):
@@ -48,7 +48,7 @@ def main(spreadsheets):
 		df_temp.columns = [convert_column_names(x) for x in column_names]
 
 		# Data Cleaning
-		df_temp['Response'] = df_temp['Response'].replace({'': 'Yes'})
+		#df_temp['Response'] = df_temp['Response'].replace({'': 'Yes'})
 
 
 		# Concat Dataframe
