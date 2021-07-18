@@ -24,10 +24,8 @@ st.image('./Sweet_Pea.jpg', caption='Feeling those wiggles')
 
 st.subheader('Record wiggles here https://forms.gle/xW1HJuyCyQ4bywFU7')
 
-data = data.assign(date=df.index.date, time=df.index.time)
-for date in data.date.unique():
-	plt.plot('time', 'latency', data=data[data.date == date])
-	plt.xlabel('latency')
+st.subheader('View all wiggles')
+st.write(data)
 
 st.title("Wiggles by hour")
 hour_selected = st.slider("Select hour of wiggles", 0, 23)

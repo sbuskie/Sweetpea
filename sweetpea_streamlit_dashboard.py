@@ -81,6 +81,8 @@ st.title('Sweet Pea Movements')
 st.image('./Sweet_Pea.jpg', caption='Feeling those wiggles')
 
 st.subheader('Record wiggles here https://forms.gle/xW1HJuyCyQ4bywFU7')
+st.subheader('View all the wiggles')
+st.write(data)
 
 st.title("Wiggles by hour")
 hour_selected = st.slider("Select hour of wiggles", 0, 23)
