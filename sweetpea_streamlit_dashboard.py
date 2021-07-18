@@ -89,7 +89,11 @@ st.altair_chart(alt.Chart(data)
 				.encode(
 	alt.X('hours(date_time):O', title='hour'),
 	alt.Y('date(date_time):O', title='day'),
-	color='count(data):Q'
+	color='count(data):Q',
+	tooltip=[
+		alt.Tooltip('hours(date_time):O', title='hour'),
+		alt.Tooltip('count(data):Q', title='Wiggle count')
+	]
 ).properties(
 	title='All the wiggles'
 ))
