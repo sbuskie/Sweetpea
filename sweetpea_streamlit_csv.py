@@ -26,6 +26,16 @@ st.subheader('Record wiggles here https://forms.gle/xW1HJuyCyQ4bywFU7')
 
 st.subheader('View all wiggles')
 st.write(data)
+st.altair_chart(alt.Chart(data)
+				.mark_rect()
+				.encode(
+	alt.X('hours(date_time):O', title='hour'),
+	alt.Y('date(date_time):O', title='day'),
+	color='count(data):Q'
+).properties(
+	title='All the wiggles'
+))
+
 
 st.title("Wiggles by hour")
 hour_selected = st.slider("Select hour of wiggles", 0, 23)
@@ -58,6 +68,9 @@ st.altair_chart(alt.Chart(chart_data)
 		opacity=0.5,
 		color='blue'
 	), use_container_width=True)
+
+
+
 
 
 st.line_chart(data)
